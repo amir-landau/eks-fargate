@@ -32,7 +32,7 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
    
     - name: connect cluster
-      run: aws eks --region us-west-2 update-kubeconfig --name ex-eks-fargate-nginx
+      run: aws eks --region us-west-2 update-kubeconfig --name ex-eks-fargate
 
 
     - name: install game

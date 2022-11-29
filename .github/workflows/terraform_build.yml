@@ -2,7 +2,7 @@ name: 'Terraform Build'
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main" , "test"]
     paths-ignore:
       - 'helm/**'
       - .github/**

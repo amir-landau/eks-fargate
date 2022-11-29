@@ -38,7 +38,7 @@ jobs:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
     - name: basic commands
-      uses: ./.github/actions
+      uses: ./.github/actions/test
   #      with:
   #        registry_username: ${{secrets.REGISTRY_USERNAME}}
   #        registry_password: ${{secrets.REGISTRY_PASSWORD}}

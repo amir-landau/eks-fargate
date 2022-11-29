@@ -11,6 +11,8 @@ description: "basic commands"
 
 runs:
   using: "composite"
+  shell: bash
+
   steps:
     - name: Terraform Init
       run: terraform init

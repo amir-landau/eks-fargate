@@ -10,7 +10,6 @@ on:
 jobs:
   terraform_basic:
     name: "terraform_basic"
-    needs: [configure_env]
     uses: amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
 
   terraform_plans:

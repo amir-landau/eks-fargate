@@ -35,10 +35,5 @@ jobs:
       run: aws eks --region us-west-2 update-kubeconfig --name ex-eks-fargate
 
 
-    - name: install game
+    - name: install nginx
       run: helm upgrade --install nginx helm/nginx
-
-   
-    - name: destroy helm
-      run: |
-        helm delete nginx

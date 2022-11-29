@@ -97,6 +97,14 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
+    - name: Terraform Format
+      continue-on-error: true
+      run: terraform fmt -check
+
+    - name: Terraform Validate
+      continue-on-error: true
+      run: terraform validate -no-color
+      
     - name: Download TF Plan
       uses: actions/download-artifact@v2
       with:
@@ -107,5 +115,3 @@ jobs:
       run: |
         terraform show "tf_plan"
         terraform apply -input=false tf_plan 
-#https://blog.searce.com/automating-terraform-with-github-actions-5b3aac5abea7
-#https://github.com/hashicorp/terraform/issues/2361

@@ -10,7 +10,7 @@ on:
 jobs:
   terraform_plan:
     name: Terraform Plan
-    uses: https://github.com/amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
+    uses: amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
 
   terraform_plans:
     name: 'Terraform Plan'

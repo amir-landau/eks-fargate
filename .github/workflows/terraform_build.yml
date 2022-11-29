@@ -37,7 +37,7 @@ jobs:
   terraform_plans:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    needs: [terraform_plan]
+    needs: [terraform_basic]
 
     steps:
     # Checkout the repository to the GitHub Actions runner

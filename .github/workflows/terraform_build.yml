@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - 'helm/**'
-      - .github/**
+    #  - .github/**
 
 jobs:
  # terraform_basic:

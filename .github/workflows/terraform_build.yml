@@ -37,8 +37,8 @@ jobs:
       with:
         cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-    - name: basic commands
-      uses: amir-landau/eks-fargate/.github/workflows/test.yml@main
+ #   - name: basic commands
+ #     uses: amir-landau/eks-fargate/.github/workflows/test.yml@main
   #      with:
   #        registry_username: ${{secrets.REGISTRY_USERNAME}}
   #        registry_password: ${{secrets.REGISTRY_PASSWORD}}

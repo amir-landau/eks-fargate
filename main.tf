@@ -52,7 +52,7 @@ module "vpc" {
   source  = "./modules/vpc"
 
   name = local.name
-  cidr = var.cidr
+  cidr = var.vpc_cidr
 
   azs             = local.azs
   public_subnets  = [for k, v in local.azs : cidrsubnet(local.vpc_cidr, 8, k)]

@@ -18,4 +18,4 @@ region = "us-west-2"
 
 vpc_version = "3.18.1"
 
-cidr = "10.0.0.0/16"
+vpc_cidr = "10.0.0.0/16"

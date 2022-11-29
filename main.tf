@@ -1,7 +1,7 @@
 locals {
   name = "ex-${replace(basename(path.cwd), "_", "-")}"
   azs      = slice(data.aws_availability_zones.available.names, 0, 3)
-  vpc_cider = var.vpc_cidr
+  vpc_cidr = var.vpc_cidr
 
 }
 

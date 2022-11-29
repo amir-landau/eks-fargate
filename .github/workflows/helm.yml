@@ -83,9 +83,9 @@ jobs:
   #        -n kube-system
 ##
 
-   # - name: destroy helm
-   #   run: |
-   #     helm delete nginx
+    - name: destroy helm
+      run: |
+        helm delete nginx
 
 
    # - name: destroy helm

@@ -2,15 +2,15 @@ name: 'Terraform Build'
 
 on:
   workflow_call:
-    inputs:
-      action:
-        required: true
-        type: string
-    
+#    inputs:
+#      action:
+#        required: true
+#        type: string
+#    
 
 jobs:
   terraform_plan:
-    name: 'Terraform Plan ${input.action}'
+    name: 'Terraform Plan'
     runs-on: ubuntu-latest
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
@@ -19,25 +19,6 @@ jobs:
         shell: bash
 
     steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v3
-      
-
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1.7.0
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-west-2
-
-
-    # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
-    - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
       run: terraform init
@@ -50,15 +31,3 @@ jobs:
     - name: Terraform Validate
       continue-on-error: true
       run: terraform validate -no-color
-
-    # Generates an execution plan for Terraform
-    - name: Terraform Plan
-      run: terraform plan -out "tf_plan" -input=false
-
-    - name: Upload TF Plan
-      uses: actions/upload-artifact@v2
-      with:
-        name: tf_plan
-        path: ./tf_plan
-        if-no-files-found: error
-        retention-days: 1

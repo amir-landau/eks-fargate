@@ -39,8 +39,7 @@ jobs:
 
     - name: Terraform Basic
       uses: ./terraform_basic.yml
-      with:
-        name: tf_plan
+
 
       
     # Generates an execution plan for Terraform

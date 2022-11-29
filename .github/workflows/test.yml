@@ -1,0 +1,24 @@
+name: "terraform basic"
+description: "basic commands"
+
+#inputs:
+#  registry_username:
+#    description: “Username for image registry”
+#    required: true
+#  registry_password:
+#    description: “Password for image registry”
+#    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Terraform Init
+      run: terraform init
+
+    - name: Terraform Format
+      continue-on-error: true
+      run: terraform fmt -check
+
+    - name: Terraform Validate
+      continue-on-error: true
+      run: terraform validate -no-color

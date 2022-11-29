@@ -8,9 +8,9 @@ on:
       - .github/**
 
 jobs:
-  terraform_basic:
-    name: "terraform_basic"
-    uses: amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
+ # terraform_basic:
+ #   name: "terraform_basic"
+ #   uses: amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
 
   terraform_plans:
     name: 'Terraform Plan'

@@ -1,4 +1,4 @@
-name: 'Terraform Build'
+name: 'Terraform Basic'
 
 on:
   workflow_call:

@@ -43,7 +43,7 @@ variable "region" {
   type        = string
 }
 
-variable "cidr" {
+variable "vpc_cidr" {
   description = "The IPv4 CIDR block for the VPC. CIDR can be explicitly set or it can be derived from IPAM using `ipv4_netmask_length` & `ipv4_ipam_pool_id`"
   type        = string
 }

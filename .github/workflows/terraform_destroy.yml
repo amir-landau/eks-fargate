@@ -36,13 +36,6 @@ jobs:
     - name: Terraform Init
       run: terraform init
 
- #  - name: Terraform Format
- #     run: terraform destroy -input=false -auto-approve
-
-    # Checks that all Terraform configuration files adhere to a canonical format
- #   - name: Terraform Format
- #     run: terraform fmt -check
-
     # Generates an execution plan for Terraform
     - name: Terraform Plan Destroy
       continue-on-error: true
@@ -96,6 +89,13 @@ jobs:
       with:
         name: tf_plan_destroy
         path: ./
+
+    - name: connect cluster
+      run: aws eks --region us-west-2 update-kubeconfig --name ex-eks-fargate
+      
+    - name: delete helm
+      continue-on-error: true
+      run: helm delete nginx
 
     - name: Terraform Destroy
       run: |

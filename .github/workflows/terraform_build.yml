@@ -52,7 +52,6 @@ jobs:
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      if: always()
       run: terraform plan -out "tf_plan" -input=false
 
     - name: Upload TF Plan

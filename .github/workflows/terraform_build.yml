@@ -9,36 +9,33 @@ on:
 
 jobs:
   terraform_plan:
+    name: Terraform Plan
+    uses: https://github.com/amir-landau/eks-fargate/.github/workflows/terraform_basic.yml@main
+
+  terraform_plans:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
 
     steps:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Terraform Basic
-      uses: ./terraform_basic.yml@main
       
     # Generates an execution plan for Terraform
-  #  - name: Terraform Plan
-  #    run: terraform plan -out "tf_plan" -input=false
-#
-  #  - name: Upload TF Plan
-  #    uses: actions/upload-artifact@v2
-  #    with:
-  #      name: tf_plan
-  #      path: ./tf_plan
-  #      if-no-files-found: error
-  #      retention-days: 1
-#
-  #    # On push to "main", build or change infrastructure according to Terraform configuration files
-  #    # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Plan
+      run: terraform plan -out "tf_plan" -input=false
+
+    - name: Upload TF Plan
+      uses: actions/upload-artifact@v2
+      with:
+        name: tf_plan
+        path: ./tf_plan
+        if-no-files-found: error
+        retention-days: 1
+
+      # On push to "main", build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
 #
   #terraform_apply:
   #  name: 'Terraform apply'

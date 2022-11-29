@@ -23,5 +23,3 @@ provider "helm" {
     }
   }
 }
-
-

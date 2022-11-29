@@ -1,0 +1,93 @@
+env:
+  AWS_REGION: us-west-2
+  
+name: 'Helm'
+
+
+on:
+  workflow_dispatch
+
+jobs:
+  helm:
+    name: 'helm'
+    runs-on: ubuntu-latest
+    environment: production
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1.7.0
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ env.AWS_REGION }}
+   
+    - name: connect cluster
+      run: aws eks --region us-west-2 update-kubeconfig --name ex-eks-fargate-nginx
+
+
+    - name: install game
+      run: helm upgrade --install nginx helm/nginx
+
+   # - name: helm list
+    #  run: helm list
+    
+   # - name: delete ingress controller
+  #    run: kubectl delete all --all -n ingress-nginx
+
+  #  - name: install eksctl
+  #    run: |
+  #      curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+  #      sudo mv /tmp/eksctl /usr/local/bin
+  #      eksctl version
+  #      eksctl utils associate-iam-oidc-provider --cluster eks-fargate --approve
+  #  - name: install game
+  #    run: |
+  #      eksctl create fargateprofile --cluster eks-fargate --region us-east-1 --name your-alb-sample-app --namespace game-2048
+  #      kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.1/docs/examples/2048/2048_full.yaml
+#
+##
+  #  - name: ingress-controller create-policy
+  #    run: |
+  #      curl -o iam_policy.json https://raw.githubusercontent.com/kubernetes-sigs/aws-load-balancer-controller/v2.4.1/docs/install/iam_policy.json
+  #      aws iam create-policy \
+  #          --policy-name AWSLoadBalancerControllerIAMPolicy \
+  #          --policy-document file://iam_policy.json
+  #      eksctl create iamserviceaccount \
+  #        --cluster=eks-fargate \
+  #        --namespace=kube-system \
+  #        --name=aws-load-balancer-controller \
+  #        --attach-policy-arn=arn:aws:iam::074250925800:policy/AWSLoadBalancerControllerIAMPolicy \
+  #        --override-existing-serviceaccounts \
+  #        --approve
+#
+  #  - name: install ingress-controller
+  #    run: |
+  #      helm repo add eks https://aws.github.io/eks-charts
+  #      kubectl apply -k "github.com/aws/eks-charts/stable/aws-load-balancer-controller//crds?ref=master"
+  #      helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
+  #        --set clusterName=eks-fargate \
+  #        --set serviceAccount.create=false \
+  #        --set region=us-east-1 \
+  #        --set vpcId=vpc-0aa491321fb0970b8 \
+  #        --set serviceAccount.name=aws-load-balancer-controller \
+  #        -n kube-system
+##
+
+   # - name: destroy helm
+   #   run: |
+   #     helm delete nginx
+
+
+   # - name: destroy helm
+   #   run: kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
+   

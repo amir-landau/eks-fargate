@@ -52,19 +52,3 @@ variable "vpc_version" {
   description = "Version of the VPC"
   type        = string
 }
-
-variable "azs" {
-  description = "A list of availability zones names or ids in the region"
-  type        = list(string)
-}
-
-variable "public_subnets" {
-  description = "A list of public subnet IDs where the nodes/node groups will be provisioned. If `control_plane_subnet_ids` is not provided, the EKS cluster control plane (ENIs) will be provisioned in these subnets"
-  type        = list(string)
-}
-
-
-variable "private_subnets" {
-  description = "A list of public subnet IDs where the nodes/node groups will be provisioned. If `control_plane_subnet_ids` is not provided, the EKS cluster control plane (ENIs) will be provisioned in these subnets"
-  type        = list(string)
-}

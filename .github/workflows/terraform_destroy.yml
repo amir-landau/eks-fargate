@@ -4,7 +4,7 @@ on:
   workflow_dispatch
 
 jobs:
-  terraform destroy plan:
+  terraform_destroy_plan:
     name: 'Terraform Destroy Plan'
     runs-on: ubuntu-latest
 

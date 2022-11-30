@@ -11,7 +11,7 @@ jobs:
   terraform_plan:
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
-    
+
     steps:
   # Checkout the repository to the GitHub Actions runner
     - name: Checkout
@@ -46,10 +46,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     needs: [terraform_plan]
-
-    defaults:
-      run:
-        shell: bash
 
     steps:
     # Checkout the repository to the GitHub Actions runner

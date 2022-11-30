@@ -2,10 +2,10 @@ name: 'Terraform Build'
 
 on:
   push:
-    branches: [ "main" , "test"]
+    branches: [ "main"]
     paths-ignore:
       - 'helm/**'
-   #   - .github/**
+      - .github/**
 
 jobs:
   terraform_plan:

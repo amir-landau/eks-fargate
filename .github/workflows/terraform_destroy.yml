@@ -50,7 +50,7 @@ jobs:
     name: 'Terraform Destroy'
     runs-on: ubuntu-latest
     environment: production
-    needs: [terraform_plan]
+    needs: [terraform_destroy_plan]
 
     defaults:
       run:

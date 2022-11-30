@@ -14,8 +14,6 @@ inputs:
      required: true
      description: "AWS region"
 
-
-
 runs:
   using: "composite"
   steps:   

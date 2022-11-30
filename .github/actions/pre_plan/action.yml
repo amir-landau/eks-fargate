@@ -4,14 +4,6 @@ env:
 name: "terraform basic"
 description: "basic commands"
 
-#inputs:
-#  registry_username:
-#    description: “Username for image registry”
-#    required: true
-#  registry_password:
-#    description: “Password for image registry”
-#    required: true
-
 runs:
   using: "composite"
   steps:

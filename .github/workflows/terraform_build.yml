@@ -21,8 +21,8 @@ jobs:
 
     - name: configure env
       uses: ./.github/actions/configure_env
-        with:
-          aws-region: us-west-2
+      with:
+        aws-region: us-west-2
 
     - name: basic commands
       uses: ./.github/actions/test
